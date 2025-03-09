@@ -9,15 +9,32 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.8.1",
+    "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
+    "autoprefixer": "^10.4.20",
+    "framer-motion": "^12.4.10",
+    "next": "15.2.1",
+    "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.2.1"
+    "react-draggable": "^4.4.6",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.3.0",
+    "react-scroll": "^1.9.3",
+    "react-tsparticles": "^2.12.2",
+    "react-typewriter-effect": "^1.1.0",
+    "tsparticles": "^3.8.1",
+    "tsparticles-slim": "^2.12.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
+    "@types/node": "22.13.9",
+    "@types/react": "19.0.10",
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4.0.9"
   }
 }
