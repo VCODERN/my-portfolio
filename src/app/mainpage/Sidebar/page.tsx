@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Biography from "./page";
-import { FaChevronRight, FaChevronLeft, FaMoon, FaSun, FaMusic, FaYoutube, FaUserAlt } from "react-icons/fa";
+import { FaChevronRight, FaChevronLeft, FaMusic, FaYoutube, FaUserAlt } from "react-icons/fa";
 
 interface SidebarProps {
   isDarkMode: boolean;
@@ -14,16 +13,13 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ isDarkMode, setIsDarkMode, activePlayer, setActivePlayer }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const [showBiography, setShowBiography] = useState(false); // State to manage the Biography visibility
+  const [showBiography, setShowBiography] = useState(false);
 
   return (
     <>
       {/* Invisible Hover Area */}
-      <div
-        className="fixed left-0 top-0 h-full w-4"
-        onMouseEnter={() => setHovered(true)}
-      />
-    
+      <div className="fixed left-0 top-0 h-full w-4" onMouseEnter={() => setHovered(true)} />
+
       {/* Sidebar */}
       <motion.div
         className="fixed left-0 top-0 h-full w-64 bg-gray-800 backdrop-blur-xl shadow-xl border-r border-gray-700 flex flex-col p-4 transition-all rounded-r-2xl"
@@ -40,23 +36,38 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkMode, setIsDarkMode, activePlay
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
         >
-          {isOpen ? (
-            <FaChevronLeft className="text-white text-2xl" />
-          ) : (
-            <FaChevronRight className="text-white text-2xl" />
-          )}
+          {isOpen ? <FaChevronLeft className="text-white text-2xl" /> : <FaChevronRight className="text-white text-2xl" />}
         </motion.div>
 
-        {/* Dark Mode Toggle */}
-        <div className="mt-5 flex items-center gap-4">
+        {/* Dark Mode Toggle (Framer Motion Slider) */}
+        <div className="mt-5 flex items-center justify-between">
           <span className="text-white text-base font-medium">{isDarkMode ? "Dark Mode" : "Light Mode"}</span>
-          <motion.button
+          <motion.div
+            className="w-14 h-7 flex items-center bg-gray-600 rounded-full p-1 cursor-pointer"
             onClick={() => setIsDarkMode(!isDarkMode)}
-            className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-600 hover:bg-gray-500 transition-all"
-            whileTap={{ scale: 0.85 }}
+            whileTap={{ scale: 0.95 }}
           >
-            {isDarkMode ? <FaMoon className="text-yellow-300 text-xl" /> : <FaSun className="text-white text-xl" />}
-          </motion.button>
+            <motion.div
+              className="w-6 h-6 bg-white rounded-full shadow-md"
+              animate={{ x: isDarkMode ? 28 : 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            />
+          </motion.div>
+        </div>
+
+        {/* Music Spectrum Slider */}
+        <div className="mt-4 flex items-center justify-between">
+          <span className="text-white text-base font-medium">Music Spectrum</span>
+          <motion.div
+            className="w-14 h-7 flex items-center bg-gray-600 rounded-full p-1 cursor-pointer"
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.div
+              className="w-6 h-6 bg-white rounded-full shadow-md"
+              animate={{ x: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            />
+          </motion.div>
         </div>
 
         {/* 🎵 Open MP3 Mini Player */}
@@ -67,9 +78,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkMode, setIsDarkMode, activePlay
           } text-white font-medium hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:animate-wave`}
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.05 }}
-          style={{
-            transition: "background 0.6s ease-in-out, transform 0.3s ease-in-out",
-          }}
+          style={{ transition: "background 0.6s ease-in-out, transform 0.3s ease-in-out" }}
         >
           <FaMusic className="mr-2" /> {activePlayer === "mp3" ? "Close MP3 Player" : "Open MP3 Player"}
         </motion.button>
@@ -82,9 +91,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkMode, setIsDarkMode, activePlay
           } text-white font-medium hover:bg-gradient-to-r hover:from-red-500 hover:to-red-700 hover:animate-wave`}
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.05 }}
-          style={{
-            transition: "background 0.6s ease-in-out, transform 0.3s ease-in-out",
-          }}
+          style={{ transition: "background 0.6s ease-in-out, transform 0.3s ease-in-out" }}
         >
           <FaYoutube className="mr-2" /> {activePlayer === "youtube" ? "Close YouTube Player" : "Open YouTube Player"}
         </motion.button>
@@ -92,20 +99,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkMode, setIsDarkMode, activePlay
         {/* 👤 Biography Button */}
         <motion.button
           onClick={() => {
-            setShowBiography(!showBiography); // Toggle the Biography visibility
-            window.location.href = "http://localhost:3000/mainpage/Biography"; // Navigate to the Biography page
+            setShowBiography(!showBiography);
+            window.location.href = "http://localhost:3000/mainpage/Biography";
           }}
           className="mt-4 flex items-center justify-center w-full p-3 rounded-lg bg-gray-600 hover:bg-gray-500 transition-all text-white font-medium hover:bg-gradient-to-r hover:from-green-500 hover:to-green-700 hover:animate-wave"
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.05 }}
-          style={{
-            transition: "background 0.6s ease-in-out, transform 0.3s ease-in-out",
-          }}
+          style={{ transition: "background 0.6s ease-in-out, transform 0.3s ease-in-out" }}
         >
-          {/* Button content */}
           Biography
         </motion.button>
-
       </motion.div>
     </>
   );
