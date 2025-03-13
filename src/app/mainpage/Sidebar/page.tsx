@@ -55,21 +55,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkMode, setIsDarkMode, activePlay
           </motion.div>
         </div>
 
-        {/* Music Spectrum Slider */}
-        <div className="mt-4 flex items-center justify-between">
-          <span className="text-white text-base font-medium">Music Spectrum</span>
-          <motion.div
-            className="w-14 h-7 flex items-center bg-gray-600 rounded-full p-1 cursor-pointer"
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.div
-              className="w-6 h-6 bg-white rounded-full shadow-md"
-              animate={{ x: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            />
-          </motion.div>
-        </div>
-
         {/* 🎵 Open MP3 Mini Player */}
         <motion.button
           onClick={() => setActivePlayer(activePlayer === "mp3" ? null : "mp3")}
