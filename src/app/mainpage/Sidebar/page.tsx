@@ -54,6 +54,33 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkMode, setIsDarkMode, activePlay
             />
           </motion.div>
         </div>
+        {/* 🌐 UEP Web Button */}
+          <motion.button
+            onClick={() => {
+              window.location.href = "http://localhost:3000/mainpage/UEPDASHBOARD";
+            }}
+            className="mt-4 flex items-center justify-center w-full p-3 rounded-lg bg-gray-600 hover:bg-gray-500 transition-all text-white font-medium hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:animate-wave"
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            style={{ transition: "background 0.6s ease-in-out, transform 0.3s ease-in-out" }}
+          >
+            UEP Web
+          </motion.button>
+
+          {/* 📄 Research Dox Button */}
+          <motion.button
+            onClick={() => {
+              window.location.href = "http://localhost:3000/mainpage/Research";
+            }}
+            className="mt-4 flex items-center justify-center w-full p-3 rounded-lg bg-gray-600 hover:bg-gray-500 transition-all text-white font-medium hover:bg-gradient-to-r hover:from-green-500 hover:to-green-700 hover:animate-wave"
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            style={{ transition: "background 0.6s ease-in-out, transform 0.3s ease-in-out" }}
+          >
+            Research Dox
+          </motion.button>
+
+        
 
         {/* 🎵 Open MP3 Mini Player */}
         <motion.button

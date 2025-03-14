@@ -15,6 +15,50 @@ export default function Dashboard() {
     const [dropdownOpen, setDropdownOpen] = useState<{ [key: string]: boolean }>({});
     const [activeIndex, setActiveIndex] = useState(null);
 
+    const newsData = [
+  {
+    title: "UEP Agri Park Expansion",
+    description: "The university is expanding its agricultural research park with modern farming technologies.",
+    images: ["/news1.gif", "/news2.gif", "/news3.gif"],
+  },
+  {
+    title: "New Research on Hydroponics",
+    description: "Researchers at UEP have developed an advanced hydroponic system for efficient urban farming.",
+    images: ["/news4.gif", "/news5.jpg", "/news6.jpg"],
+  },
+  {
+    title: "Smart Farming Innovations",
+    description: "Automated irrigation and AI-powered plant monitoring are now being implemented in UEP.",
+    images: ["/news7.jpg", "/news8.jpg", "/news9.jpg"],
+  },
+  {
+    title: "Student Achievements in Agriculture",
+    description: "Students showcase their innovative farming solutions in a national competition.",
+    images: ["/news10.jpg", "/news11.jpg", "/news12.jpg"],
+  },
+  {
+    title: "Upcoming Agriculture Symposium",
+    description: "Experts from various fields will discuss the future of vertical farming at UEP.",
+    images: ["/news13.jpg", "/news14.jpg", "/news15.jpg"],
+  },
+];
+    
+   const [indices, setIndices] = useState(new Array(newsData.length).fill(0));
+
+  useEffect(() => {
+    const intervals = newsData.map((_, i) =>
+      setInterval(() => {
+        setIndices((prev) => {
+          const newIndices = [...prev];
+          newIndices[i] = (newIndices[i] + 1) % newsData[i].images.length;
+          return newIndices;
+        });
+      }, Math.random() * 3000 + 2000) 
+    );
+
+    return () => intervals.forEach(clearInterval);
+  }, []);
+
 const toggleAccordion = (index) => {
   setActiveIndex(activeIndex === index ? null : index);
     };
@@ -56,7 +100,7 @@ const FlipClock = ({ value }: { value: string }) => {
 
     useEffect(() => {
     const timer = setTimeout(() => {
-      setShowSecondImage(true); // Show the second image after 5 seconds
+      setShowSecondImage(true); 
     }, 5000);
 
     // Initialize AOS
@@ -92,24 +136,28 @@ const FlipClock = ({ value }: { value: string }) => {
   
   return (
     <div className="h-screen bg-gray-100">
-  <header
-    className={`fixed top-0 left-0 w-full bg-[#013366] shadow-lg flex items-center justify-between px-4 py-4 z-50 text-white border-b-4 border-yellow-400 lg:flex hidden transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
+ <header
+    className={`fixed top-0 left-0 w-full bg-[#013366] shadow-lg flex items-center justify-between px-4 py-4 z-50 text-white border-b-10 border-yellow-500 lg:flex hidden transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
 >
     {/* Logo Section */}
     <div className="flex items-center space-x-4" data-aos="fade-right" data-aos-duration="1000">
         <div
-            className="w-16 h-16 bg-transparent rounded-full flex items-center justify-center shadow-md bg-cover bg-center"
+            className="w-24 h-24 bg-transparent rounded-full flex items-center justify-center shadow-md bg-cover bg-center"
             style={{ backgroundImage: "url('/UEPLOGO.png')" }}
         >
             <span className="sr-only">UEP Logo</span>
         </div>
-        <span className="text-lg font-semibold whitespace-nowrap">UEP</span>
+        <span className="text-lg font-semibold whitespace-nowrap">University of Eastern Philippines</span>
     </div>
 
     {/* Navigation */}
     <nav className="flex space-x-8 font-medium text-sm" data-aos="fade-right">
-        {["Home", "About", "Academics", "Admissions", "Research", "Extension", "Products"].map((menu, index) => (
+        {/* Home (Non-Dropdown) */}
+        <a href="#" className="hover:text-yellow-400 transition">Home</a>
+
+        {/* Other Dropdown Menus */}
+        {["About", "Academics", "Admissions", "Research", "Extension", "Products"].map((menu, index) => (
             <div key={index} className="relative group">
                 <button
                     className="hover:text-yellow-400 transition flex items-center space-x-1"
@@ -284,29 +332,66 @@ const FlipClock = ({ value }: { value: string }) => {
 
 
 
-      {/* Placeholder Content */}
-       <main className="mt-32 p-12 space-y-8 flex flex-col items-center">
-        <div className="w-full max-w-screen-lg relative">
-            <img
-                src="/final.gif"
-                alt="Background Image"
-                data-aos="fade-right" 
-                className="w-full h-auto object-cover rounded-lg shadow-lg"
-            />
+<main className="mt-32 p-6 md:p-12 space-y-8 flex flex-col items-center relative bg-[url('/UEPBG.jpg')] bg-cover bg-center bg-fixed">
+      {/* White Transparent Layer */}
+      <div className="absolute top-0 left-0 w-full h-full bg-white opacity-50 backdrop-blur-md"></div>
 
-            {/* Overlay GIF (Shows After 5 Seconds) */}
-            {showSecondImage && (
-            <img
-                src="/newww2bg.gif"
-                alt="Overlay Image"
-                className="absolute top-0 left-0 w-full h-full object-cover rounded-lg shadow-lg transition-opacity duration-1000 opacity-100"
-            />
-            )}
+      {/* Main Image Section */}
+      <div className="w-full max-w-screen-2xl relative" data-aos="fade-right">
+        <img
+          src="/final.gif"
+          alt="Background Image"
+          className="w-full h-auto object-cover rounded-lg shadow-lg"
+        />
+
+        {/* Overlay Image Appears After 5 Seconds */}
+        {showSecondImage && (
+          <motion.img
+            src="/newww2bg.gif"
+            alt="Overlay Image"
+            className="absolute top-0 left-0 w-full h-full object-cover rounded-lg shadow-lg"
+          />
+        )}
+      </div>
+
+      {/* Latest News & Updates Section */}
+      <div className="relative z-10 w-full flex justify-center" data-aos="fade-up">
+        <div className="bg-gray-200 rounded-lg p-6 w-full max-w-screen-2xl shadow-lg mt-8 flex flex-col items-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center" data-aos="fade-down">
+            Latest News & Updates
+          </h2>
+
+          {/* News Sliders (Responsive Grid) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-full">
+            {newsData.map((news, i) => (
+              <div
+                key={i}
+                className="relative w-full max-w-[280px] sm:max-w-[300px] h-[420px] overflow-hidden rounded-lg shadow-md bg-white p-4 mx-auto"
+                data-aos="zoom-in"
+                data-aos-delay={i * 200}
+              >
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{news.title}</h3>
+                <p className="text-sm text-gray-700 mb-4">{news.description}</p>
+
+                {/* Image Slider */}
+                <div className="relative w-full h-[220px] overflow-hidden rounded-lg">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={indices[i]}
+                      src={news.images[indices[i]]}
+                      alt="News"
+                      className="absolute w-full h-full object-cover rounded-lg shadow-md"
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -50 }}
+                      transition={{ duration: 0.8 }}
+                    />
+                  </AnimatePresence>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-
-      <p className="text-gray-700 text-lg text-center">Scroll down to see the effect.</p>
-      <div className="h-[2000px] bg-gray-200 rounded-lg p-6 w-full max-w-screen-lg">
-        <p>More content here...</p>
       </div>
     </main>
     </div>
