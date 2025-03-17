@@ -8,9 +8,19 @@ import { FaGithub, FaTwitter, FaLinkedin, FaArrowLeft } from "react-icons/fa";
 
 const timelineData = [
   { year: "2025", title: "Built a Custom Cybersecurity Toolkit", description: "Designed tools to enhance personal and business security.", side: "left" },
+  { year: "2025", title: "Conducted First Security Audit", description: "Performed a security assessment for a small business.", side: "right" },
   { year: "2024", title: "Created Automated Vertical Farm", description: "Developed an automated farming system for urban environments.", side: "right" },
+  { year: "2024", title: "Expanded into Ethical Hacking", description: "Started performing penetration testing and security assessments.", side: "left" },
+  { year: "2024", title: "Built a Custom Web App", description: "Developed a web-based dashboard for monitoring security logs.", side: "right" },
   { year: "2023", title: "Started Learning Cybersecurity", description: "Began studying online security and ethical hacking.", side: "left" },
+  { year: "2023", title: "Experimented with IoT Security", description: "Tested vulnerabilities in smart home devices.", side: "right" },
+  { year: "2022", title: "Built First Web App", description: "Created a small-scale web application using HTML, CSS, and JavaScript.", side: "right" },
+  { year: "2022", title: "Explored Networking", description: "Set up and configured home lab networks using Cisco Packet Tracer.", side: "left" },
+  { year: "2021", title: "Dove into Programming", description: "Started learning Python and JavaScript for software development.", side: "left" },
+  { year: "2021", title: "Built a Basic Portfolio Website", description: "Designed a simple portfolio to showcase projects.", side: "right" },
 ];
+
+
 
 const AnimatedCircle = () => (
   <motion.circle
@@ -131,7 +141,7 @@ const Biography: React.FC = () => {
           whileHover={{ scale: 1.1, boxShadow: "0px 0px 20px rgba(255, 255, 255, 0.5)" }}
         />
         <h1 className="mt-4 text-3xl font-bold text-gray-100">V1NC3</h1>
-        <p className="mt-2 text-gray-400">Cybersecurity Enthusiast | Developer | Creator</p>
+        <p className="mt-2 text-gray-400">Cybersecurity Enthusiast | Developer | Creator | UI UX Designer</p>
 
         {/* Social Links */}
         <SocialLinks />

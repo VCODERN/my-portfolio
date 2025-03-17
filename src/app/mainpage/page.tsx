@@ -4,10 +4,8 @@ import { motion } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaGithub, FaYoutube } from "react-icons/fa";
 import "animate.css";
 import GlitchText from "./component/GlitchText";
-import Gestures from "./Gestures/page";
 import Sidebar from "./Sidebar/page";
 import YTMiniPlayer from "./Sidebar/ytminiplayer";
-
 import NotifsDrawer from "./notifs/page";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -15,7 +13,7 @@ import "aos/dist/aos.css";
 const Page = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [activePlayer, setActivePlayer] = useState<"mp3" | "youtube" | null>(null);
-  const [showModal, setShowModal] = useState(false); // State for modal visibility
+  const [showModal, setShowModal] = useState(false); 
 
   const toggleModal = () => {
     setShowModal((prev) => !prev);

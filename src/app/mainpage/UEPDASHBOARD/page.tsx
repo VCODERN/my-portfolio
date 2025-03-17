@@ -219,14 +219,14 @@ const FlipClock = ({ value }: { value: string }) => {
 
         {/* MOBILE HEADER - Visible Only on Small Screens */}
         <header
-        className="fixed top-0 left-0 w-full bg-[#013366] shadow-lg flex items-center justify-between px-5 py-3 z-50 text-white border-b-5 border-yellow-400 lg:hidden"
+        className="fixed top-0 left-0 w-full bg-[#013366] shadow-lg flex items-center justify-between px-5 py-5 z-50 text-white border-b-5 border-yellow-400 lg:hidden"
         data-aos="fade-right"
         data-aos-duration="800"
         >
         {/* Logo Section */}
         <div className="flex items-center space-x-4" data-aos="fade-right" data-aos-duration="1000">
             <div
-            className="w-12 h-12 bg-transparent rounded-full flex items-center justify-center shadow-md bg-cover bg-center"
+            className="w-20 h-20 bg-transparent rounded-full flex items-center justify-center shadow-md bg-cover bg-center"
             style={{ backgroundImage: "url('/UEPLOGO.png')" }}
             >
             <span className="sr-only">UEP Logo</span>
@@ -237,7 +237,7 @@ const FlipClock = ({ value }: { value: string }) => {
 
     {/* SIDEBAR BUTTON - Visible on Small Screens */}
         <button 
-            className="fixed top-4 right-1 z-50 p-2 bg-[#013366] text-white rounded-md lg:hidden"
+            className="fixed top-20 right-1 z-50 w-10 p-2 bg-[#013366] text-white rounded-md lg:hidden"
             onClick={() => setSidebarOpen(true)}
             data-aos="fade-left" data-aos-duration="1000"
         >
@@ -332,68 +332,102 @@ const FlipClock = ({ value }: { value: string }) => {
 
 
 
-<main className="mt-32 p-6 md:p-12 space-y-8 flex flex-col items-center relative bg-[url('/UEPBG.jpg')] bg-cover bg-center bg-fixed">
-      {/* White Transparent Layer */}
-      <div className="absolute top-0 left-0 w-full h-full bg-white opacity-50 backdrop-blur-md"></div>
+      <main className="mt-32 p-6 md:p-12 space-y-8 flex flex-col items-center relative bg-[url('/UEPBG.jpg')] bg-cover bg-center bg-fixed">
+            {/* White Transparent Layer */}
+            <div className="absolute top-0 left-0 w-full h-full bg-white opacity-50 backdrop-blur-md"></div>
 
-      {/* Main Image Section */}
-      <div className="w-full max-w-screen-2xl relative" data-aos="fade-right">
-        <img
-          src="/final.gif"
-          alt="Background Image"
-          className="w-full h-auto object-cover rounded-lg shadow-lg"
-        />
+            {/* Main Image Section */}
+            <div className="w-full max-w-screen-2xl relative" data-aos="fade-right">
+              <img
+                src="/final.gif"
+                alt="Background Image"
+                className="w-full h-auto object-cover rounded-lg shadow-lg"
+              />
 
-        {/* Overlay Image Appears After 5 Seconds */}
-        {showSecondImage && (
-          <motion.img
-            src="/newww2bg.gif"
-            alt="Overlay Image"
-            className="absolute top-0 left-0 w-full h-full object-cover rounded-lg shadow-lg"
-          />
-        )}
-      </div>
+              {/* Overlay Image Appears After 5 Seconds */}
+              {showSecondImage && (
+                <motion.img
+                  src="/newww2bg.gif"
+                  alt="Overlay Image"
+                  className="absolute top-0 left-0 w-full h-full object-cover rounded-lg shadow-lg"
+                />
+              )}
+            </div>
 
-      {/* Latest News & Updates Section */}
-      <div className="relative z-10 w-full flex justify-center" data-aos="fade-up">
-        <div className="bg-gray-200 rounded-lg p-6 w-full max-w-screen-2xl shadow-lg mt-8 flex flex-col items-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center" data-aos="fade-down">
-            Latest News & Updates
-          </h2>
+            {/* Latest News & Updates Section */}
+            <div className="relative z-10 w-full flex justify-center" data-aos="fade-up">
+              <div className="bg-gray-200 rounded-lg p-6 w-full max-w-screen-2xl shadow-lg mt-8 flex flex-col items-center">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center" data-aos="fade-down">
+                  Latest News & Updates
+                </h2>
 
-          {/* News Sliders (Responsive Grid) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-full">
-            {newsData.map((news, i) => (
-              <div
-                key={i}
-                className="relative w-full max-w-[280px] sm:max-w-[300px] h-[420px] overflow-hidden rounded-lg shadow-md bg-white p-4 mx-auto"
-                data-aos="zoom-in"
-                data-aos-delay={i * 200}
-              >
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{news.title}</h3>
-                <p className="text-sm text-gray-700 mb-4">{news.description}</p>
+                {/* News Sliders - Mobile: Scrollable, Desktop: Grid */}
+                <div className="w-full">
+                  {/* Mobile Scrollable Slider */}
+                  <div className="flex gap-4 overflow-x-auto md:hidden px-4 py-2 scrollbar-hide">
+                    {newsData.map((news, i) => (
+                      <div
+                        key={i}
+                        className="relative flex-shrink-0 w-[80%] max-w-[320px] h-[420px] overflow-hidden rounded-lg shadow-md bg-white p-4"
+                        data-aos="zoom-in"
+                        data-aos-delay={i * 200}
+                      >
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">{news.title}</h3>
+                        <p className="text-sm text-gray-700 mb-4">{news.description}</p>
 
-                {/* Image Slider */}
-                <div className="relative w-full h-[220px] overflow-hidden rounded-lg">
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={indices[i]}
-                      src={news.images[indices[i]]}
-                      alt="News"
-                      className="absolute w-full h-full object-cover rounded-lg shadow-md"
-                      initial={{ opacity: 0, x: 50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -50 }}
-                      transition={{ duration: 0.8 }}
-                    />
-                  </AnimatePresence>
+                        {/* Image Slider */}
+                        <div className="relative w-full h-[220px] overflow-hidden rounded-lg">
+                          <AnimatePresence mode="wait">
+                            <motion.img
+                              key={indices[i]}
+                              src={news.images[indices[i]]}
+                              alt="News"
+                              className="absolute w-full h-full object-cover rounded-lg shadow-md"
+                              initial={{ opacity: 0, x: 50 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              exit={{ opacity: 0, x: -50 }}
+                              transition={{ duration: 0.8 }}
+                            />
+                          </AnimatePresence>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Desktop Grid View */}
+                  <div className="hidden md:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                    {newsData.map((news, i) => (
+                      <div
+                        key={i}
+                        className="relative w-full max-w-[280px] sm:max-w-[300px] h-[420px] overflow-hidden rounded-lg shadow-md bg-white p-4 mx-auto"
+                        data-aos="zoom-in"
+                        data-aos-delay={i * 200}
+                      >
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">{news.title}</h3>
+                        <p className="text-sm text-gray-700 mb-4">{news.description}</p>
+
+                        {/* Image Slider */}
+                        <div className="relative w-full h-[220px] overflow-hidden rounded-lg">
+                          <AnimatePresence mode="wait">
+                            <motion.img
+                              key={indices[i]}
+                              src={news.images[indices[i]]}
+                              alt="News"
+                              className="absolute w-full h-full object-cover rounded-lg shadow-md"
+                              initial={{ opacity: 0, x: 50 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              exit={{ opacity: 0, x: -50 }}
+                              transition={{ duration: 0.8 }}
+                            />
+                          </AnimatePresence>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </main>
+            </div>
+          </main>
     </div>
   );
 }
