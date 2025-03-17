@@ -127,25 +127,50 @@ const Biography: React.FC = () => {
       </motion.div>
 
       {/* Profile Section */}
-      <motion.div
-        className="relative z-10 w-full max-w-3xl bg-gray-800/30 backdrop-blur-md rounded-2xl shadow-2xl p-8 flex flex-col items-center text-center border border-gray-700"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <motion.img
-          src="/me.jpg"
-          alt="Profile Photo"
-          className="w-50 h-50 rounded-full shadow-lg object-cover"
-          data-aos="fade-up"
-          whileHover={{ scale: 1.1, boxShadow: "0px 0px 20px rgba(255, 255, 255, 0.5)" }}
-        />
-        <h1 className="mt-4 text-3xl font-bold text-gray-100">V1NC3</h1>
-        <p className="mt-2 text-gray-400">Cybersecurity Enthusiast | Developer | Creator | UI UX Designer</p>
+<motion.div
+  className="relative z-10 w-full max-w-3xl bg-gray-800/30 backdrop-blur-md rounded-2xl shadow-2xl p-8 flex flex-col items-center text-center border border-gray-700"
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.8 }}
+>
+  <motion.img
+    src="/me.jpg"
+    alt="Profile Photo"
+    className="w-50 h-50 rounded-full shadow-lg object-cover"
+    data-aos="fade-up"
+    whileHover={{ scale: 1.1, boxShadow: "0px 0px 20px rgba(255, 255, 255, 0.5)" }}
+  />
+  <h1 className="mt-4 text-3xl font-bold text-gray-100">V1NC3</h1>
+  <p className="mt-2 text-gray-400">Cybersecurity Enthusiast | Developer | Creator | UI UX Designer</p>
 
-        {/* Social Links */}
-        <SocialLinks />
+  {/* Social Links */}
+  <div className="mt-4 flex gap-6">
+    {/* LinkedIn */}
+    <a href="https://www.linkedin.com/in/vince-carlo-noora-30a831356/" target="_blank" rel="noopener noreferrer">
+      <motion.div whileHover={{ scale: 1.2 }}>
+        <FaLinkedin className="text-gray-300 text-2xl hover:text-blue-400 transition-colors" />
       </motion.div>
+    </a>
+
+
+    {/* GitHub */}
+      <a href="https://github.com/VCODERN" target="_blank" rel="noopener noreferrer">
+        <motion.div whileHover={{ scale: 1.2 }}>
+          <FaGithub className="text-gray-300 text-2xl hover:text-gray-400 transition-colors" />
+        </motion.div>
+      </a>
+
+    {/* Twitter (X) */}
+    <a href="https://x.com/V1NC3NOORA" target="_blank" rel="noopener noreferrer">
+      <motion.div whileHover={{ scale: 1.2 }}>
+        <FaTwitter className="text-gray-300 text-2xl hover:text-blue-400 transition-colors" />
+      </motion.div>
+    </a>
+
+
+  </div>
+</motion.div>
+
 
       {/* Timeline Section */}
       <motion.div
